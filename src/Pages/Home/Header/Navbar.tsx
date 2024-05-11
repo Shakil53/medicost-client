@@ -2,7 +2,6 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../../assets/logo/logo1.svg';
 import { motion } from "framer-motion"
 import { Button } from '@/components/ui/button';
-import { Menu } from 'lucide-react';
 import { useState } from 'react';
 
 const Navbar: React.FC = () => {
@@ -11,9 +10,7 @@ const Navbar: React.FC = () => {
     const toggleNavbar = () => {
       setIsOpen(!isOpen);
     };
-  
- 
-  
+   
     return (
         
            <div className="navbar bg-gradient-to-r from-teal-400 teal-350 to-teal-200">
@@ -73,7 +70,7 @@ const Navbar: React.FC = () => {
       </div>
   <div className="flex-none gap-4 mr-10">
     <div className="form-control mr-auto">
-      <input type="text" placeholder="type and medicine or generic" className="input input-bordered w-24 md:w-auto" />
+      <input type="text" placeholder="type medicine or generic" className="input input-bordered w-24 md:w-auto" />
     </div>
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

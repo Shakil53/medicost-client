@@ -1,10 +1,12 @@
-import React from 'react';
+import AsideNav from './Aside/AsideNav';
+
 
 const Home = () => {
     return (
-        <div>
-            <h1>This is Home</h1>
-        </div>
+        <>
+      
+        <AsideNav></AsideNav>
+        </>
     );
 };
 
