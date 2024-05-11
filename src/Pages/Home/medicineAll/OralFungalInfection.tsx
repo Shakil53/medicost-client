@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import OralFungalInfectionComponent from './categoryComponent/OralFungalInfectionComponent';
+import { Key } from 'react';
 
 const OralFungalInfection = () => {
     const getOralFungalInfection = async() => {
@@ -8,7 +8,7 @@ const OralFungalInfection = () => {
     }
 
 
-    const {data, isLoading, isError} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: ["oralFungalInfection"],
         queryFn: getOralFungalInfection,
 
@@ -21,7 +21,7 @@ const OralFungalInfection = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data?.map(item=> <OralFungalInfectionComponent key={item.id} item={item}></OralFungalInfectionComponent>)
+                data?.map((item: { id: Key | null | undefined; })=> <OralFungalInfectionComponent key={item.id} item={item}></OralFungalInfectionComponent>)
             }
         </div>
     );

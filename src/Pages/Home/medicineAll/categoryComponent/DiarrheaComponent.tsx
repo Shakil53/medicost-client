@@ -1,9 +1,8 @@
 
-import React from 'react';
 
 const DiarrheaComponent = ({ item }) => {
     
-    const { name, quantity, generic, company, offer, mrp, price, form, category, img } = item;
+    const { name, quantity, generic, company, price, img } = item;
     const showCard = item.category === 'Diarrhea';
 
     

@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import ConstipationComponent from './categoryComponent/ConstipationComponent';
+import { Key } from 'react';
 
 const Constipation = () => {
     const getConstipation = async() => {
@@ -7,7 +8,7 @@ const Constipation = () => {
     }
 
 
-    const {data, isLoading, isError} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: ["constipationItem"],
         queryFn: getConstipation,
 
@@ -20,7 +21,7 @@ const Constipation = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data?.map(item => <ConstipationComponent key={item.id} item={item}></ConstipationComponent>)
+                data?.map((item: { id: Key | null | undefined; }) => <ConstipationComponent key={item.id} item={item}></ConstipationComponent>)
            }
         </div>
     );

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+
 import FeverComponent from './categoryComponent/FeverComponent';
+import { Key } from 'react';
 
 const Fever = () => {
 
@@ -9,7 +10,7 @@ const Fever = () => {
     }
 
 
-    const {data, isLoading, isError} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: ["fever"],
         queryFn: getFever,
 
@@ -21,7 +22,7 @@ const Fever = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data?.map(item => <FeverComponent key={item.id} item={item}></FeverComponent>)
+                data?.map((item: { id: Key | null | undefined; }) => <FeverComponent key={item.id} item={item}></FeverComponent>)
           }
         </div>
     );

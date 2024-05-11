@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
 import SpasmComponent from './categoryComponent/SpasmComponent';
+import { Key } from 'react';
 
 const Spasm = () => {
 
@@ -10,7 +10,7 @@ const Spasm = () => {
             .then(res => res.json());
     }
 
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading} = useQuery({
         queryKey: ['spasmItem'],
         queryFn: getSpasmItem,
     })
@@ -22,7 +22,7 @@ const Spasm = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data?.map(item => <SpasmComponent key={item.id} item={item}></SpasmComponent>)
+                data?.map((item: { id: Key | null | undefined; }) => <SpasmComponent key={item.id} item={item}></SpasmComponent>)
             }
         </div>
     );

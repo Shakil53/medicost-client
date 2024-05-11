@@ -1,6 +1,7 @@
-import React from 'react';
+
 import { useQuery } from "@tanstack/react-query";
 import EczemaComponent from './categoryComponent/EczemaComponent';
+import { Key } from "react";
 
 
 
@@ -11,7 +12,7 @@ const Eczema = () => {
     }
 
 
-    const {data, isLoading, isError} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: ["eczema"],
         queryFn: getEczema,
 
@@ -29,7 +30,7 @@ const Eczema = () => {
         <div className="flex flex-wrap space-x-5 justify-around">
             
                 {
-                    data.map(item => <EczemaComponent key={item.id} item={item}></EczemaComponent>)
+                    data.map((item: { id: Key | null | undefined; }) => <EczemaComponent key={item.id} item={item}></EczemaComponent>)
                 }
             
         </div>

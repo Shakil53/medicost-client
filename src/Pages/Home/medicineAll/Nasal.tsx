@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+
 import NasalComponent from './categoryComponent/NasalComponent';
+import { Key } from 'react';
 
 const Nasal = () => {
 
@@ -9,7 +10,7 @@ const Nasal = () => {
     } 
 
 
-    const {data, isLoading, isError} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: ["nasalItem"],
         queryFn: getNasalItem
     })
@@ -22,7 +23,7 @@ const Nasal = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data.map(item => <NasalComponent item={item} key={item.id}></NasalComponent>)
+                data.map((item: { id: Key | null | undefined; }) => <NasalComponent item={item} key={item.id}></NasalComponent>)
             }
         </div>
     );

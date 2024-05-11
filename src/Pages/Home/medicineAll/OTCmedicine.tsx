@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import OTCmedicineComponent from "./categoryComponent/OTCmedicineComponent";
+import { Key } from "react";
 
 
 const OTCmedicine = () => {
@@ -11,7 +12,7 @@ const OTCmedicine = () => {
 
  
 
-    const {data, isLoading, isError} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: ["OTCmedicine"],
         queryFn: getOtcMedicine,
 
@@ -28,7 +29,7 @@ const OTCmedicine = () => {
         <div className="flex flex-wrap space-x-5 justify-around">
             
                 {
-                    data.map(item => <OTCmedicineComponent key={item.id} item={item}></OTCmedicineComponent>)
+                    data.map((item: { id: Key | null | undefined; }) => <OTCmedicineComponent key={item.id} item={item}></OTCmedicineComponent>)
                 }
             
         </div>

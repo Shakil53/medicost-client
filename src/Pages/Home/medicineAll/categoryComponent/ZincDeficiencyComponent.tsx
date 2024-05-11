@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ZincDeficiencyComponent = ({ item }) => {
+const ZincDeficiencyComponent = ({ item }: any) => {
 
-    const { name, quantity, generic, company, offer, mrp, price, form, category, img } = item;
+    const { name, quantity, generic, company, price, img } = item;
     const showCard = item.category === 'Zinc Deficiency';
 
     return (

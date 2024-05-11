@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+
 import GynecologicalComponent from './categoryComponent/GynecologicalComponent';
+import { Key } from 'react';
 
 const Gynecological = () => {
     const getGynecological = async() => {
@@ -8,7 +9,7 @@ const Gynecological = () => {
     }
 
 
-    const {data, isLoading, isError} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: ["gynecological"],
         queryFn: getGynecological,
 
@@ -21,7 +22,7 @@ const Gynecological = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data?.map(item => <GynecologicalComponent key={item.id} item={item}></GynecologicalComponent>)
+                data?.map((item: { id: Key | null | undefined; }) => <GynecologicalComponent key={item.id} item={item}></GynecologicalComponent>)
             }
         </div>
     );

@@ -1,7 +1,8 @@
-import React from 'react';
 
-const UlcerComponent = ({item}) => {
-    const { name, quantity, generic, company, offer, mrp, price, form, category, img } = item;
+
+
+const UlcerComponent = ({ item }) => {
+    const { name, quantity, generic, company, price, img } = item;
     const showCard = item.category === 'Ulcer';
 
    

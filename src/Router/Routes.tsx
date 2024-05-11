@@ -1,6 +1,11 @@
 import Main from "@/LayOut/Main";
 import ComparePrice from "@/Pages/ComparePrice/ComparePrice";
+import Consultation from "@/Pages/Consultant/Consultant";
 import Consultant from "@/Pages/Consultant/Consultant";
+import DentistTrend from "@/Pages/Consultant/DentistTrend";
+import DermatologistTrend from "@/Pages/Consultant/DermatologistTrend";
+import Gynaecologist from "@/Pages/Consultant/Gynaecologist";
+import Immunodermatologist from "@/Pages/Consultant/Immunodermatologist";
 import AsideNav from "@/Pages/Home/Aside/AsideNav";
 import Home from "@/Pages/Home/Home";
 import Constipation from "@/Pages/Home/medicineAll/Constipation";
@@ -106,5 +111,28 @@ export const router = createBrowserRouter([
         }
 
     ]
-},
+    },
+    {
+        path: '/consultant',
+        element: <Consultation></Consultation>,
+        children: [
+           
+            {
+                path: 'dentist',
+                element: <DentistTrend></DentistTrend>
+            },
+            {
+                path: 'dermatologist-T',
+                element: <DermatologistTrend></DermatologistTrend>
+            },
+            {
+                path: 'immunodermatologist',
+                element: <Immunodermatologist></Immunodermatologist>
+            },
+            {
+                path: 'gynaecologist',
+                element: <Gynaecologist></Gynaecologist>
+            }
+        ]
+    }
   ]);

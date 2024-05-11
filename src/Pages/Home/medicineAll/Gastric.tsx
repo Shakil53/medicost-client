@@ -1,6 +1,7 @@
-import React from 'react';
+
 import { useQuery } from "@tanstack/react-query";
 import GasticComponent from './categoryComponent/GasticComponent';
+import { Key } from "react";
 
 const Gastric = () => {
 
@@ -8,7 +9,7 @@ const Gastric = () => {
         return await fetch('/medicine.json').then(res => res.json());
     }
 
-    const {data,isLoading, isError} = useQuery({
+    const {data,isLoading} = useQuery({
         queryKey: ["gasticItem"],
         queryFn: getGasticItem,
     })
@@ -20,7 +21,7 @@ const Gastric = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data?.map(item=> <GasticComponent key={item.id} item={item}></GasticComponent>)
+                data?.map((item: { id: Key | null | undefined; })=> <GasticComponent key={item.id} item={item}></GasticComponent>)
             }
         </div>
     );

@@ -8,7 +8,7 @@ const Vitamins = () => {
     }
 
 
-    const {data, isLoading, isError} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: ["vitamins"],
         queryFn: getVitamins,
 
@@ -20,7 +20,7 @@ const Vitamins = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data?.map(item => <VitaminsComponent key={item.id} item={item}></VitaminsComponent>)
+                data?.map((item: { id: React.Key | null | undefined; }) => <VitaminsComponent key={item.id} item={item}></VitaminsComponent>)
            }
         </div>
     );

@@ -1,6 +1,7 @@
-import React from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 import DiarrheaComponent from './categoryComponent/DiarrheaComponent';
+import { Key } from 'react';
 
 const Diarrhea = () => {
     const getDiarrheaItem = async () => {
@@ -9,7 +10,7 @@ const Diarrhea = () => {
     }
 
 
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ["diarrheaItem"],
         queryFn: getDiarrheaItem,
     })
@@ -20,7 +21,7 @@ const Diarrhea = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data?.map(item => <DiarrheaComponent key={item.id} item={item}></DiarrheaComponent>)
+                data?.map((item: { id: Key | null | undefined; }) => <DiarrheaComponent key={item.id} item={item}></DiarrheaComponent>)
             }
         </div>
     );

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+
 import DermatitisComponent from './categoryComponent/DermatitisComponent';
+import { Key } from 'react';
 
 const Dermatitis = () => {
     const getDermatitis = async() => {
@@ -8,7 +9,7 @@ const Dermatitis = () => {
     }
 
 
-    const {data, isLoading, isError} = useQuery({
+    const {data, isLoading} = useQuery({
         queryKey: ["dermatitis"],
         queryFn: getDermatitis,
 
@@ -20,7 +21,7 @@ const Dermatitis = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data?.map(item => <DermatitisComponent key={item.id} item={item}></DermatitisComponent>)
+                data?.map((item: { id: Key | null | undefined; }) => <DermatitisComponent key={item.id} item={item}></DermatitisComponent>)
            }
         </div>
     );

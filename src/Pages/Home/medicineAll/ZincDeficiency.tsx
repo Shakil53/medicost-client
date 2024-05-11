@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+
 import ZincDeficiencyComponent from './categoryComponent/ZincDeficiencyComponent';
+import { Key } from 'react';
 
 const ZincDeficiency = () => {
 
@@ -11,7 +12,7 @@ const ZincDeficiency = () => {
 
 
 
-    const { data, isLoading, isError } = useQuery({
+    const { data, isLoading} = useQuery({
         queryKey: ["zincDeficiency"],
         queryFn: getZincDeficiency,
     })
@@ -22,7 +23,7 @@ const ZincDeficiency = () => {
     return (
         <div className="flex flex-wrap space-x-5 justify-around">
             {
-                data?.map(item => <ZincDeficiencyComponent key={item.id} item={item}></ZincDeficiencyComponent>)
+                data?.map((item: { id: Key | null | undefined; }) => <ZincDeficiencyComponent key={item.id} item={item}></ZincDeficiencyComponent>)
             }
         </div>
     );
