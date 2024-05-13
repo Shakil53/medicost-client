@@ -3,6 +3,7 @@ import logo from '../../../assets/logo/logo1.svg';
 import { motion } from "framer-motion"
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -53,8 +54,8 @@ const Navbar: React.FC = () => {
 
       {/* Responsive menu */}
       <div className={`${isOpen ? 'block' : 'hidden'} md:hidden fixed top-20 right-36  bg-gradient-to-tr from-teal-400 teal-350 to-teal-200 p-4 rounded shadow-sm`}>
-            <div className="px-2 pt-2 pb-3 sm:px-3">
-                 <ul className="space-y-2">
+        <div className="px-2 pt-2 pb-3 sm:px-3">
+          <ul className="space-y-2">
             <li>
             <NavLink to="/" className=" "><Button variant='link' className='px-3 py-2 rounded-md text-md font-semibold'>Home</Button></NavLink>
             </li>
@@ -74,11 +75,20 @@ const Navbar: React.FC = () => {
     </div>
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <motion.div initial={{ y: -50 }} animate={{ x: 0, y: -1, scale: 1.2 }} transition={{ duration: .5, type: 'spring', stiffness: 70 }}>
-                                <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"></img>
-                                </motion.div>
-        </div>
+        <div className="rounded-full">
+                <motion.div initial={{ y: -50 }} animate={{ x: 0, y: -1, scale: 1.2 }} transition={{ duration: .5, type: 'spring', stiffness: 70 }}>
+                  <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"></img>
+                </motion.div>
+                
+              </div>
+          {/* login--------------- */}
+              
+                <NavLink to='/login'><Button variant="outline">Login</Button></NavLink>
+              
+             
+              
+             
+              
       </div>
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
         <li>

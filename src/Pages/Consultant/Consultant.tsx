@@ -2,19 +2,21 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { NavLink, Outlet } from 'react-router-dom';
 import img1 from '../../assets/consultation/banner.jpg';
+import Navbar from '../Home/Header/Navbar';
 
 
 const Consultation = () => {
    
     return (
         <>
+            <Navbar></Navbar>
            <div className='max-w-full mx-auto'>
             
             {/* header part */}
             <div className=''>
-                <div className='absolute p-2 md:p-4 lg:p-5 mt-2 md:mt-24 lg:mt-56 ml-5 md:ml-32 lg:ml-72'>
+                <div className='absolute p-2 md:p-4 lg:p-5 mt-5 md:mt-12 lg:mt-40 ml-8 md:ml-32 lg:ml-72'>
                     
-                    <div className='max-w-md'>
+                    <div className='max-w-sm md:max-w-md'>
                         <h1 className='text-2xl md:text-5xl font-bold'>Find Your Doctor!</h1>
                         <p className='mt-4 text-sm'>Get Telemedicine and Doctor Video Consultation service with thousands of Doctors and Hospitals in Bangladesh.</p>
                     </div>
@@ -36,7 +38,7 @@ const Consultation = () => {
                 </div>
             
                 <div className=''>
-                     <img src={img1}></img>   
+                     <img className='' src={img1}></img>   
                 </div>
                 </div>
             </div>

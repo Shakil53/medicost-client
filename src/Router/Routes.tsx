@@ -23,6 +23,7 @@ import Spasm from "@/Pages/Home/medicineAll/Spasm";
 import Ulcer from "@/Pages/Home/medicineAll/Ulcer";
 import Vitamins from "@/Pages/Home/medicineAll/Vitamins";
 import ZincDeficiency from "@/Pages/Home/medicineAll/ZincDeficiency";
+import Login from "@/Pages/login/Login";
 import {createBrowserRouter} from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -41,6 +42,10 @@ export const router = createBrowserRouter([
             {
                 path: 'consultant',
                 element: <Consultant></Consultant>
+            },
+            {
+                path: 'login',
+                element: <Login></Login>
             }
       ]
   },
