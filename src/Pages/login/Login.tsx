@@ -1,9 +1,33 @@
 import Container from "@/LayOut/Container";
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import img from '../../assets/consultation/layout.jpg'
+import { useEffect, useRef, useState } from "react";
 
 
 
 const Login = () => {
+    const captchaRef = useRef(null);
+    const [disable, setDisable] = useState(true)
+
+    useEffect(() => {
+        loadCaptchaEnginge(6); 
+    }, [])
+    
+    const handleValidateCaptcha = ()=> {
+  
+        const user_captcha_value = captchaRef.current.value;
+        console.log(user_captcha_value);
+        if (validateCaptcha(user_captcha_value)) {
+            setDisable(false)
+        }
+        else {
+            setDisable(true)
+        }
+  }
+  
+
+
+  
 
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,12 +61,25 @@ const Login = () => {
             <span className="label-text">Password</span>
           </label>
           <input type="password" name="password" placeholder="password" className="input input-bordered" required />
-          <label className="label">
-            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-          </label>
+          
         </div>
+        <div className="form-control">
+            <label className="label">
+                <span><LoadCanvasTemplate></LoadCanvasTemplate></span>
+                
+            </label>
+               
+            <label>
+                <span className="label-text">Captcha</span>
+            </label>
+         
+            <input type="text" name="captcha" ref={captchaRef} placeholder="type the text above" className="input input-bordered mt-2" required />
+                <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs mt-2">Validate</button>
+          
+        </div>
+        
         <div className="form-control mt-6">
-                                <input type="submit" className="btn btn-primary" value="Login" />
+                                <input disabled={disable} type="submit" className="btn btn-primary" value="Login" />
         </div>
       </form>
     </div>
