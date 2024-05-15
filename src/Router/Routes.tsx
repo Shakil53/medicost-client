@@ -8,6 +8,7 @@ import Gynaecologist from "@/Pages/Consultant/Gynaecologist";
 import Immunodermatologist from "@/Pages/Consultant/Immunodermatologist";
 import AsideNav from "@/Pages/Home/Aside/AsideNav";
 import Home from "@/Pages/Home/Home";
+import Register from "@/Pages/Home/Register/Register";
 import Constipation from "@/Pages/Home/medicineAll/Constipation";
 import CoughFlu from "@/Pages/Home/medicineAll/CoughFlu";
 import Dermatitis from "@/Pages/Home/medicineAll/Dermatitis";
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
             {
                 path: 'login',
                 element: <Login></Login>
+            },
+            {
+                path: 'register',
+                element: <Register></Register>
             }
       ]
   },

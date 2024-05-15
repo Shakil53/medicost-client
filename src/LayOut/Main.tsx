@@ -5,12 +5,14 @@ import { Outlet, useLocation } from 'react-router-dom';
 const Main = () => {
 
   const location = useLocation()
-  const noFooter = location.pathname.includes('login');
+  const noFooterForLogin = location.pathname.includes('login');
+  const noFooterForRegister = location.pathname.includes('register');
 
     return (
         <div>
         <Outlet></Outlet>
-        { noFooter || <Footer></Footer>}
+        {/* {noFooter || <Footer></Footer>} */}
+        {noFooterForLogin || noFooterForRegister ? null : <Footer />}
         </div>
     );
 };

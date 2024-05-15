@@ -1,7 +1,8 @@
 import Container from "@/LayOut/Container";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import img from '../../assets/consultation/layout.jpg'
+import img from '../../assets/consultation/layout.jpg';
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 
@@ -24,9 +25,6 @@ const Login = () => {
             setDisable(true)
         }
   }
-  
-
-
   
 
 
@@ -79,8 +77,11 @@ const Login = () => {
         </div>
         
         <div className="form-control mt-6">
-                                <input disabled={disable} type="submit" className="btn btn-primary" value="Login" />
-        </div>
+                <input disabled={disable} type="submit" className="btn btn-primary" value="Login" />
+                </div>
+          <label className="label">
+            <Link to='/register' className="label-text-alt link link-hover">Don't have an account?</Link>
+          </label>
       </form>
     </div>
   </div>
