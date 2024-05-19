@@ -2,15 +2,30 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../../assets/logo/logo1.svg';
 import { motion } from "framer-motion"
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from '@/contexts/AuthProvider/AuthProvider';
+import { getAuth, signOut } from 'firebase/auth';
+import app from '@/firebase/firebase.config';
+import { Link } from 'react-router-dom';
 
+
+const auth = getAuth(app)
 
 const Navbar: React.FC = () => {
+    const {user, loading} = useContext(AuthContext)
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleNavbar = () => {
       setIsOpen(!isOpen);
-    };
+  };
+  
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        
+      })
+    .catch(error => console.error(error))
+  }
    
     return (
         
@@ -77,17 +92,12 @@ const Navbar: React.FC = () => {
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="rounded-full">
                 <motion.div initial={{ y: -50 }} animate={{ x: 0, y: -1, scale: 1.2 }} transition={{ duration: .5, type: 'spring', stiffness: 70 }}>
-                  <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"></img>
+                  
+                  <img alt="user photo" src={user?.photoURL}></img> 
                 </motion.div>
                 
               </div>
           {/* login--------------- */}
-              
-                <NavLink to='/login'><Button variant="outline">Login</Button></NavLink>
-              
-             
-              
-             
               
       </div>
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
@@ -98,7 +108,11 @@ const Navbar: React.FC = () => {
           </a>
         </li>
         <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <li>{
+                user?.email ? <Link to='/login' onClick={handleSignOut}>Sign Out</Link> :
+                  <Link to='/login'>Sign In</Link>                
+            }
+              </li>
       </ul>
     </div>
   </div>

@@ -7,6 +7,7 @@ import { createContext, useEffect, useState } from "react";
 export const AuthContext = createContext(" auth");
 const auth = getAuth(app)
 
+
 const AuthProvider = ({children}) => {
 
     const [user, setUser] = useState(null);
@@ -16,11 +17,12 @@ const AuthProvider = ({children}) => {
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
-    // google auth provider with pop up
+   
+
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            console.log(currentUser);
+            // console.log(currentUser);
             setUser(currentUser)
         });
         return () => {
@@ -32,7 +34,8 @@ const AuthProvider = ({children}) => {
         user,
         loading,
         createUser,
-       
+        
+        
 
     }
     return (

@@ -3,18 +3,21 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import img from '../../../assets/consultation/layout.jpg';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FaGoogle   } from "react-icons/fa";
 import { AuthContext } from '@/contexts/AuthProvider/AuthProvider';
+import googleImg from "../../../assets/google.png";
+import { Button } from '@/components/ui/button';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import app from '@/firebase/firebase.config';
 
+
+const auth = getAuth(app)
 
 const Register = () => {
 
   const {createUser} = useContext(AuthContext);
-
- 
-    const captchaRef = useRef(null);
-    const [disable, setDisable] = useState(true)
-
+  const captchaRef = useRef(null);
+  const [disable, setDisable] = useState(true)
+  const provider = new GoogleAuthProvider();
 
  // eslint-disable-next-line @typescript-eslint/no-explicit-any
  const handleRegister = (event: { preventDefault: () => void; target: any; }) => {
@@ -29,7 +32,8 @@ const Register = () => {
    createUser( email, password)
      .then(result => {
        const user = result.user;
-     console.log(user);
+       console.log(user);
+       
      })
    .catch(err => console.error(err))
   }
@@ -41,7 +45,6 @@ const Register = () => {
     }, [])
     
     const handleValidateCaptcha = ()=> {
-  
         const user_captcha_value = captchaRef.current.value;
         console.log(user_captcha_value);
         if (validateCaptcha(user_captcha_value)) {
@@ -52,6 +55,15 @@ const Register = () => {
         }
   }
 
+  const handleGooglepopUp = () => {
+    signInWithPopup(auth, provider)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+      })
+    .catch(error => console.error(error))
+  }
+
 
     return (
         <div className="hero min-h-screen bg-cover bg-center" style={{ backgroundImage: `url(${img})` }}>
@@ -60,10 +72,7 @@ const Register = () => {
 <div className="text-center lg:text-left max-w-sm">
   <h1 className="text-5xl font-extrabold text-teal-500">Please Register</h1>
                         <p className="py-6">Empowering Health, Enlightening Choice - Your Prescription for Informed Savings.</p>
-              <button onClick={handleRegister} className="btn btn-primary btn-wide text-white font-light"><span className=''><FaGoogle /></span> Sign in with Google</button>
-              <div>
-                photo: <img src=''></img>
-              </div>
+                        <Button variant="outline" onClick={handleGooglepopUp} className="gap-3 btn-wide font-bold"><span className="text-[#4285f4]  flex items-center"><img className="size-6" src={googleImg}></img></span><span className="text-gray-500">Continue with Google...</span></Button>
 </div>
 <div className="card w-full max-w-sm shadow-2xl bg-base-100">
   <form onSubmit={handleRegister} className="card-body">
@@ -97,7 +106,6 @@ const Register = () => {
     <div className="form-control">
         <label className="label">
             <span><LoadCanvasTemplate></LoadCanvasTemplate></span>
-            
         </label>
            
         <label>
