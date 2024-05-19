@@ -11,7 +11,6 @@ const Main = () => {
     return (
         <div>
         <Outlet></Outlet>
-        {/* {noFooter || <Footer></Footer>} */}
         {noFooterForLogin || noFooterForRegister ? null : <Footer />}
         </div>
     );

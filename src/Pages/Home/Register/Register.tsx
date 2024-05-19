@@ -1,32 +1,17 @@
 import Container from '@/LayOut/Container';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import img from '../../../assets/consultation/layout.jpg';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaGoogle   } from "react-icons/fa";
-import { getAuth, GoogleAuthProvider,signInWithPopup } from 'firebase/auth';
-import app from '@/firebase/firebase.config';
+import { AuthContext } from '@/contexts/AuthProvider/AuthProvider';
 
-
-const auth =getAuth(app)
 
 const Register = () => {
 
-  const [user, setUser] = useState({})
+  const {createUser} = useContext(AuthContext);
 
-    const provider = new GoogleAuthProvider();
-
-    const handleGoogleSignIn = ()=>{
-        signInWithPopup(auth, provider)
-            .then(result => {
-              const user = result.user;
-              setUser(user)
-                console.log(user);
-            })
-            .catch(error => {
-            console.log('error', error);
-        })
-    }
+ 
     const captchaRef = useRef(null);
     const [disable, setDisable] = useState(true)
 
@@ -35,10 +20,21 @@ const Register = () => {
  const handleRegister = (event: { preventDefault: () => void; target: any; }) => {
     event.preventDefault();
     const form = event.target;
+    const fName = form.fName.value;
+    const lName = form.lName.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
-    }
+  //  console.log(fName, lName, email, password);
+   
+   createUser( email, password)
+     .then(result => {
+       const user = result.user;
+     console.log(user);
+     })
+   .catch(err => console.error(err))
+  }
+  
+
     
     useEffect(() => {
         loadCaptchaEnginge(6); 
@@ -64,9 +60,9 @@ const Register = () => {
 <div className="text-center lg:text-left max-w-sm">
   <h1 className="text-5xl font-extrabold text-teal-500">Please Register</h1>
                         <p className="py-6">Empowering Health, Enlightening Choice - Your Prescription for Informed Savings.</p>
-              <button onClick={handleGoogleSignIn} className="btn btn-primary btn-wide text-white font-light"><span className=''><FaGoogle /></span> Sign in with Google</button>
+              <button onClick={handleRegister} className="btn btn-primary btn-wide text-white font-light"><span className=''><FaGoogle /></span> Sign in with Google</button>
               <div>
-                photo: <img src={user.photoURL}></img>
+                photo: <img src=''></img>
               </div>
 </div>
 <div className="card w-full max-w-sm shadow-2xl bg-base-100">
@@ -75,14 +71,14 @@ const Register = () => {
       <label className="label">
         <span className="label-text">First Name</span>
       </label>
-      <input type="text" name="Fname" placeholder="Enter your first name" className="input input-bordered" required />
+      <input type="text" name="fName" placeholder="Enter your first name" className="input input-bordered" required />
     </div>
     {/* last name------------- */}
     <div className="form-control">
       <label className="label">
         <span className="label-text">Last Name</span>
       </label>
-      <input type="text" name="Lname" placeholder="Enter your last name" className="input input-bordered" required />
+      <input type="text" name="lName" placeholder="Enter your last name" className="input input-bordered" required />
     </div>
     {/* email------------- */}
     <div className="form-control">
