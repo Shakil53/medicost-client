@@ -92,8 +92,13 @@ const Navbar: React.FC = () => {
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="rounded-full">
                 <motion.div initial={{ y: -50 }} animate={{ x: 0, y: -1, scale: 1.2 }} transition={{ duration: .5, type: 'spring', stiffness: 70 }}>
-                  
-                  <img alt="user photo" src={user?.photoURL}></img> 
+                  {
+                    // condition ? it (or:) it
+                    user?.email ? <img alt="user photo" src={user?.photoURL}></img> : 
+                    <span className="loading loading-ring loading-lg"></span>
+                  }
+                
+                 
                 </motion.div>
                 
               </div>
@@ -108,10 +113,12 @@ const Navbar: React.FC = () => {
           </a>
         </li>
         <li><a>Settings</a></li>
-        <li>{
-                user?.email ? <Link to='/login' onClick={handleSignOut}>Sign Out</Link> :
-                  <Link to='/login'>Sign In</Link>                
-            }
+              <li>
+              
+                  {
+                     user?.email ? <Link to='/' onClick={handleSignOut}>Sign Out</Link> :
+                    <Link to='/login'>Sign In</Link>                
+                  }
               </li>
       </ul>
     </div>

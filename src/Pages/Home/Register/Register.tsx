@@ -2,7 +2,7 @@ import Container from '@/LayOut/Container';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import img from '../../../assets/consultation/layout.jpg';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '@/contexts/AuthProvider/AuthProvider';
 import googleImg from "../../../assets/google.png";
 import { Button } from '@/components/ui/button';
@@ -14,7 +14,8 @@ const auth = getAuth(app)
 
 const Register = () => {
 
-  const {createUser} = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
+  const location = useNavigate();
   const captchaRef = useRef(null);
   const [disable, setDisable] = useState(true)
   const provider = new GoogleAuthProvider();
@@ -33,6 +34,9 @@ const Register = () => {
      .then(result => {
        const user = result.user;
        console.log(user);
+       form.reset();
+       location('/login',{replace: true})
+       
        
      })
    .catch(err => console.error(err))
@@ -60,6 +64,7 @@ const Register = () => {
       .then(result => {
         const user = result.user;
         console.log(user);
+        location('/login', {replace: true})
       })
     .catch(error => console.error(error))
   }

@@ -1,27 +1,39 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Container from "@/LayOut/Container";
 import img from '../../assets/consultation/layout.jpg';
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import googleImg from "../../assets/google.png";
 import { Button } from "@/components/ui/button";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "@/firebase/firebase.config";
+import { useContext } from "react";
+import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
 
 
 
 const auth = getAuth(app)
 
 const Login = () => {
-
+  const { SignInEmailAndPassword } = useContext(AuthContext);
+  const location = useNavigate();
   const provider = new GoogleAuthProvider();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const handleSignIN = (event: { preventDefault: () => void; target: any; }) => {
+const handleSignIN = (event: { preventDefault: () =>    void; target: any; }) => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
       console.log(email, password);
+
+      SignInEmailAndPassword(email, password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        location('/', {replace:true})
+       })
+    .catch(err => console.error(err))
      
   }
 
@@ -29,6 +41,7 @@ const Login = () => {
     signInWithPopup(auth, provider)
       .then(result => {
         const user = result.user;
+        location('/', {replace:true})
 
       })
     .catch(error => console.error(error))
