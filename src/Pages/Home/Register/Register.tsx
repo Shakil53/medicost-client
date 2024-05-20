@@ -15,7 +15,10 @@ const auth = getAuth(app)
 const Register = () => {
 
   const { createUser } = useContext(AuthContext);
-  const location = useNavigate();
+
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || '/';
+
   const captchaRef = useRef(null);
   const [disable, setDisable] = useState(true)
   const provider = new GoogleAuthProvider();
@@ -35,7 +38,7 @@ const Register = () => {
        const user = result.user;
        console.log(user);
        form.reset();
-       location('/login',{replace: true})
+       navigate(from, { replace: true });
        
        
      })
@@ -64,7 +67,7 @@ const Register = () => {
       .then(result => {
         const user = result.user;
         console.log(user);
-        location('/login', {replace: true})
+        navigate(from, { replace: true });
       })
     .catch(error => console.error(error))
   }

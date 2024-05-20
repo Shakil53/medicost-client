@@ -15,7 +15,10 @@ const auth = getAuth(app)
 
 const Login = () => {
   const { SignInEmailAndPassword } = useContext(AuthContext);
-  const location = useNavigate();
+
+  const navigate = useNavigate();
+  const from = location?.state?.from?.pathname || '/';
+
   const provider = new GoogleAuthProvider();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -31,7 +34,7 @@ const handleSignIN = (event: { preventDefault: () =>    void; target: any; }) =>
         const user = result.user;
         console.log(user);
         form.reset();
-        location('/', {replace:true})
+       navigate(from, { replace: true });
        })
     .catch(err => console.error(err))
      
@@ -41,7 +44,7 @@ const handleSignIN = (event: { preventDefault: () =>    void; target: any; }) =>
     signInWithPopup(auth, provider)
       .then(result => {
         const user = result.user;
-        location('/', {replace:true})
+        navigate(from, { replace: true });
 
       })
     .catch(error => console.error(error))
