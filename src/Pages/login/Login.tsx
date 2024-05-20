@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Container from "@/LayOut/Container";
 import img from '../../assets/consultation/layout.jpg';
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import googleImg from "../../assets/google.png";
 import { Button } from "@/components/ui/button";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
@@ -10,35 +10,33 @@ import { useContext } from "react";
 import { AuthContext } from "@/contexts/AuthProvider/AuthProvider";
 
 
-
 const auth = getAuth(app)
 
 const Login = () => {
-  const { SignInEmailAndPassword } = useContext(AuthContext);
+ const {SignInEmailAndPassword} = useContext(AuthContext)
 
   const navigate = useNavigate();
   const from = location?.state?.from?.pathname || '/';
 
   const provider = new GoogleAuthProvider();
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const handleSignIN = (event: { preventDefault: () =>    void; target: any; }) => {
-        event.preventDefault();
-        const form = event.target;
-        const email = form.email.value;
-        const password = form.password.value;
-      console.log(email, password);
+  const handleSignIN = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
 
-      SignInEmailAndPassword(email, password)
+    SignInEmailAndPassword(email, password)
       .then(result => {
         const user = result.user;
         console.log(user);
         form.reset();
-       navigate(from, { replace: true });
-       })
-    .catch(err => console.error(err))
-     
+        navigate(from, { replace: true });
+      })
+    .catch(error => console.error(error))
   }
+
 
   const handleLoginWithGoogle = () => {
     signInWithPopup(auth, provider)
@@ -82,7 +80,7 @@ const handleSignIN = (event: { preventDefault: () =>    void; target: any; }) =>
         
         <div className="form-control mt-6">
                 <input type="submit" className="btn btn-primary" value="Login" />
-                </div>
+        </div>
           <label className="label">
             <Link to='/register' className="label-text-alt link link-hover">Create an account..</Link>
           </label>
