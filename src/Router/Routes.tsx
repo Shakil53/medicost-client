@@ -3,10 +3,9 @@ import ComparePrice from "@/Pages/ComparePrice/ComparePrice";
 import CancerDoctor from "@/Pages/Consultant/CancerDoctor";
 import Consultation from "@/Pages/Consultant/Consultant";
 import Consultant from "@/Pages/Consultant/Consultant";
-import DentistTrend from "@/Pages/Consultant/DentistTrend";
-import DermatologistTrend from "@/Pages/Consultant/DermatologistTrend";
-import Gynaecologist from "@/Pages/Consultant/Gynaecologist";
-import Immunodermatologist from "@/Pages/Consultant/Immunodermatologist";
+import Gynaecologist from "@/Pages/Consultant/Ophthalmologist";
+import Immunodermatologist from "@/Pages/Consultant/Neurology";
+import MedicineSpecialist from "@/Pages/Consultant/MedicineSpecialist";
 import AsideNav from "@/Pages/Home/Aside/AsideNav";
 import Home from "@/Pages/Home/Home";
 import Register from "@/Pages/Home/Register/Register";
@@ -27,6 +26,8 @@ import Vitamins from "@/Pages/Home/medicineAll/Vitamins";
 import ZincDeficiency from "@/Pages/Home/medicineAll/ZincDeficiency";
 import Login from "@/Pages/login/Login";
 import {createBrowserRouter} from "react-router-dom";
+import Neurology from "@/Pages/Consultant/Neurology";
+import Ophthalmologist from "@/Pages/Consultant/Ophthalmologist";
 
 export const router = createBrowserRouter([
     {
@@ -133,16 +134,16 @@ export const router = createBrowserRouter([
                 element: <CancerDoctor></CancerDoctor>
             },
             {
-                path: 'dermatologist-T',
-                element: <DermatologistTrend></DermatologistTrend>
+                path: 'medicine-specialist',
+                element: <MedicineSpecialist></MedicineSpecialist>
             },
             {
-                path: 'immunodermatologist',
-                element: <Immunodermatologist></Immunodermatologist>
+                path: 'neurology',
+                element: <Neurology></Neurology>
             },
             {
-                path: 'gynaecologist',
-                element: <Gynaecologist></Gynaecologist>
+                path: 'ophthalmologist',
+                element: <Ophthalmologist></Ophthalmologist>
             }
         ]
     }

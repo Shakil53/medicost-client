@@ -30,10 +30,10 @@ const Consultation = () => {
                         <div>
                         <nav className='flex gap-2'>
                             <h1 className='text-md'>Trending:</h1>
-                                <NavLink to='/consultant/cancer-specialist' className='no-underline hover:underline'>Cancer Specialist</NavLink>    
-                                <NavLink to='/consultant/dermatologist-T' className='no-underline hover:underline'>Dermatologist</NavLink>    
-                                <NavLink to='/consultant/immunodermatologist' className='no-underline hover:underline'>Immunodermatologist</NavLink>    
-                                <NavLink to='/consultant/gynaecologist' className='no-underline hover:underline'>Gynaecologist</NavLink>    
+                                <NavLink to='/consultant/cancer-specialist' className='no-underline hover:underline'>Cancer Specialist,</NavLink>    
+                                <NavLink to='/consultant/medicine-specialist' className='no-underline hover:underline'>Medicine Specialist,</NavLink>    
+                                <NavLink to='/consultant/neurology' className='no-underline hover:underline'>Neurology</NavLink>    
+                                <NavLink to='/consultant/ophthalmologist' className='no-underline hover:underline'>Ophthalmologist</NavLink>    
                             </nav>
                         </div>
                 </div>

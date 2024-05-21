@@ -4,12 +4,10 @@ import { Badge } from "@/components/ui/badge";
 
 
 
-const CancerComponent = ({ item }) => {
-    
+const NeurologyComponent = ({ item }) => {
     
     return (
-       
-            <Card className="max-w-xs mx-auto bg-white shadow-lg rounded-lg transition-colors duration-300 hover:bg-gray-50 hover:text-blue-500">
+        <Card className="max-w-xs mx-auto bg-white shadow-lg rounded-lg transition-colors duration-300 hover:bg-gray-50 hover:text-blue-500">
                 <CardHeader>
                 <Avatar className="size-28 mx-auto">
                        <AvatarImage className="" src={item.img} /> 
@@ -34,9 +32,7 @@ const CancerComponent = ({ item }) => {
                 <Badge className="text-sm bg-green-500" variant="destructive"><button>Appointment</button></Badge>
                 </CardFooter>
         </Card>
-       
-
     );
 };
 
-export default CancerComponent;
+export default NeurologyComponent;

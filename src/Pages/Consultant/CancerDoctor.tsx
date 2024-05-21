@@ -23,7 +23,7 @@ const CancerDoctor = () => {
 
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-16 gap-14'>
+        <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-16 gap-4'>
             {
                 data.cancer_doctor.map(item => <CancerComponent key={item.id} item={item}></CancerComponent>)
             }
