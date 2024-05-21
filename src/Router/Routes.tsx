@@ -1,5 +1,6 @@
 import Main from "@/LayOut/Main";
 import ComparePrice from "@/Pages/ComparePrice/ComparePrice";
+import CancerDoctor from "@/Pages/Consultant/CancerDoctor";
 import Consultation from "@/Pages/Consultant/Consultant";
 import Consultant from "@/Pages/Consultant/Consultant";
 import DentistTrend from "@/Pages/Consultant/DentistTrend";
@@ -128,8 +129,8 @@ export const router = createBrowserRouter([
         children: [
            
             {
-                path: 'dentist',
-                element: <DentistTrend></DentistTrend>
+                path: 'cancer-specialist',
+                element: <CancerDoctor></CancerDoctor>
             },
             {
                 path: 'dermatologist-T',

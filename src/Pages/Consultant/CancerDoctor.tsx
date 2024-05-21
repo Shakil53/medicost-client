@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import img from '../../assets/logo/logo.png';
+import CancerComponent from './consultantComponent/CancerComponent';
 
-const DentistTrend = () => {
+
+const CancerDoctor = () => {
     
 
     const getDentistData = async () => {
@@ -18,20 +19,18 @@ const DentistTrend = () => {
         return <p>Loading..</p>
     }
 
-
+    
 
 
     return (
-        <div className='mt-40 ml-14'>
-            <h1>Dentist Trend Doctor here</h1>
-            <img src={img}></img>
-            
-                {
-                    data.cancer_doctor.map(ski => <h1 key={ski.id}>{ski.name}</h1>)
-                }
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-16 gap-14'>
+            {
+                data.cancer_doctor.map(item => <CancerComponent key={item.id} item={item}></CancerComponent>)
+            }
+       
             
         </div>
     );
 };
 
-export default DentistTrend;
+export default CancerDoctor;
