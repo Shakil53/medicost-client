@@ -11,6 +11,9 @@ const Ophthalmologist = () => {
         queryKey: ['ophthalomologist'],
         queryFn: getOphthalmologist,
     })
+    if (isLoading) {
+        return <p>Loading..</p>
+    }
     return (
         <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-16 gap-4'>
         {

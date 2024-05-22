@@ -20,7 +20,7 @@ const Gynecological = () => {
     }
 
     return (
-        <div className="flex flex-wrap space-x-5 justify-around">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 p-16 gap-4">
             {
                 data?.map((item: { id: Key | null | undefined; }) => <GynecologicalComponent key={item.id} item={item}></GynecologicalComponent>)
             }

@@ -28,7 +28,7 @@ const OphthalmologistComponent = ({item}) => {
         <CardFooter>
         <Badge className="text-sm bg-green-500" variant="destructive"><button>Appointment</button></Badge>
         </CardFooter>
-</Card>
+        </Card>
 
     );
 };
